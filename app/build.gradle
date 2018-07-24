@@ -36,6 +36,7 @@ android {
 
 ext {
     SUPPORT_LIB_VER = '27.1.0'
+    ESPRESSO_LIB_VER = '3.0.1'
     RETROFIT_LIB_VER = '2.3.0'
     DAGGER_LIB_VERSION = '2.15'
     STETHO_LIB_VERSION = '1.5.0'
@@ -48,10 +49,13 @@ dependencies {
 
     testImplementation junit5.unitTests()
     testImplementation "io.mockk:mockk:1.8.3"
-    testImplementation 'org.mockito:mockito-core:2.5.0'
+    testImplementation 'org.mockito:mockito-core:2.18.0'
+    testImplementation 'org.mockito:mockito-inline:2.18.0'
+    testImplementation 'android.arch.core:core-testing:1.1.1'
     testImplementation 'com.nhaarman:mockito-kotlin:1.5.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$ESPRESSO_LIB_VER"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$ESPRESSO_LIB_VER"
 
     implementation "com.android.support:appcompat-v7:$SUPPORT_LIB_VER"
     implementation "com.android.support:design:$SUPPORT_LIB_VER"
@@ -91,4 +95,5 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation "android.arch.lifecycle:viewmodel:1.1.1"
     implementation "android.arch.lifecycle:reactivestreams:1.1.1"
+
 }
