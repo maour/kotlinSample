@@ -6,11 +6,16 @@ import retrofit2.Converter
 
 
 class WrappedPipeDriveResponseBodyConverter<T>(
-        private val converter: Converter<ResponseBody, PipeDriveResponse<T>>
-) : Converter<ResponseBody, T> {
+    private val converter: Converter<ResponseBody, PipeDriveResponse<T>>
+                                              ) : Converter<ResponseBody, T> {
 
     override fun convert(value: ResponseBody): T? {
         val response = converter.convert(value)
-        return if (response.success) response?.data else throw CommunicateException(response?.error)
+        return response?.let {
+            when (it.success) {
+                true  -> it.data
+                false -> throw CommunicateException(response?.error)
+            }
+        }
     }
 }
